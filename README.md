@@ -1,2 +1,2 @@
 # GifTastic
-Wk. 5 --- Ajax
+Wk. 6 --- Ajax
