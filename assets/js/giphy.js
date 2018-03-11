@@ -15,6 +15,8 @@
           url: queryURL,
           method: "GET"
         }).then(function(response) {
+            //Clear gifs that are displayed
+            $("#gifs-appear-here").empty();
             // Storing an array of results in the results variable
             var results = response.data;
             console.log(response.data);
@@ -37,25 +39,9 @@
                 var gifImage = $("<img>");
   
                 // Giving the image tag an src attribute of a property pulled off the
-                // result item
-                gifImage.attr("src", results[i].images.fixed_height.url);
-
-                $("<img>").on("click", function() {
-                    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                    var state = $(this).attr("data-state");
-                    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                    // Then, set the image's data-state to animate
-                    // Else set src to the data-still value
-                    if (state === "still") {
-                      $(this).attr("src", $(this).attr("data-animate"));
-                      $(this).attr("data-state", "animate");
-                    } else {
-                      $(this).attr("src", $(this).attr("data-still"));
-                      $(this).attr("data-state", "still");
-                    }
-                  });
-
-
+                // Starting with Still State and adding class of gif
+                gifImage.attr("src", results[i].images.fixed_height_still.url);
+                gifImage.addClass("gif");
   
                 // Appending the paragraph and personImage we created to the "gifDiv" div we created
                 gifDiv.append(p);
@@ -104,13 +90,35 @@
        emotionArr.push(emotionInput);
        console.log(emotionArr);
  
-       // Calling renderButtons which handles the processing of our movie array
+       // Calling renderButtons which handles the processing of our emotion array
        renderButtons();
  
      });
  
-     // Generic function for displaying the movieInfo
+     // Generic function for displaying the Emotions
      $(document).on("click", ".feeling", displayEmotions);
+
+      // Start/Stop
+     $(document).on("click", ".gif", function () {
+        // get current state (still or animate)
+        var state = $(this).attr("data-state");
+        // get current src
+        var src = $(this).attr("src");
+        if (state === "still") {
+            // remove '_s.gif'
+            src = src.slice(0, -6);
+            src += ".gif";
+            // change data-state
+            $(this).attr("data-state", "animate");
+        } else {
+            // remove '.gif'
+            src = src.slice(0, -4);
+            src += "_s.gif";
+            $(this).attr("data-state", "still");
+        }
+        // update src
+        $(this).attr("src", src);
+    });
  
      // Calling the renderButtons function to display the intial buttons
      renderButtons();

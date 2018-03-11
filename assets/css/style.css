@@ -1,1 +1,7 @@
 /***** CSS Styles ****/
+
+.item {
+    display: inline-block;
+    widith: 70px;
+    padding: 20px 10px;
+}
