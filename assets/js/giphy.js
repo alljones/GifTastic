@@ -17,6 +17,7 @@
         }).then(function(response) {
             // Storing an array of results in the results variable
             var results = response.data;
+            console.log(response.data);
   
             // Looping over every result item
             for (var i = 0; i < results.length; i++) {
@@ -38,6 +39,23 @@
                 // Giving the image tag an src attribute of a property pulled off the
                 // result item
                 gifImage.attr("src", results[i].images.fixed_height.url);
+
+                $("<img>").on("click", function() {
+                    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+                    var state = $(this).attr("data-state");
+                    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+                    // Then, set the image's data-state to animate
+                    // Else set src to the data-still value
+                    if (state === "still") {
+                      $(this).attr("src", $(this).attr("data-animate"));
+                      $(this).attr("data-state", "animate");
+                    } else {
+                      $(this).attr("src", $(this).attr("data-still"));
+                      $(this).attr("data-state", "still");
+                    }
+                  });
+
+
   
                 // Appending the paragraph and personImage we created to the "gifDiv" div we created
                 gifDiv.append(p);
