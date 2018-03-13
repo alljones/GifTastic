@@ -3,40 +3,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GifTastic</title>
+    <title>Feelin' Giphy</title>
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Rammetto+One|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="text-center">How You Feelin'</h1>
+            <form class="form-inline text-center">
+                <div class="form-group">
+                    <label class="sr-only" for="emotionInput">Add an Emotion</label>
+                    <input type="text" class="form-control" id="emotionInput" placeholder="Add an Emotion">
+                </div>
+                    <button type="submit" class="btn btn-default" id="addEmotion">Add</button>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <!--All Buttons Here -->
         <div class="row">
-            <div class="col-md-12" id="emoButtons"></div>
+                <div class="col-md-12" id="emoButtons"></div>
         </div>
 
         <div class="row">
-            <!--Form Half -->
-            <div class="col-md-3">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label class="sr-only" for="emotionInput">Add an Emotion</label>
-                            <input type="text" class="form-control" id="emotionInput" placeholder="Add an Emotion">
-                        </div>
-                        <button type="submit" class="btn btn-default" id="addEmotion">Add</button>
-                        </form>
+            <div class="page-header">
+                <h2 id="feeling-title">I am feeling ...</h2>
             </div>
             <!--Gif Stored Here -->
-            <div id="gifs-appear-here" class="col-md-6"></div>
+            <div id="gifs-appear-here" class="col-md-12"></div>
         </div>
-    </div>
+    </div>    
 
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/giphy.js"></script>    
+<script src="assets/js/giphy.js"></script>  
 </body>
 </html>

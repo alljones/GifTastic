@@ -1,7 +1,49 @@
 /***** CSS Styles ****/
 
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.jumbotron .h1, .jumbotron h1 {
+    font-family: 'Rammetto One', cursive;
+    color: #2a363b;
+}
+
 .item {
     display: inline-block;
     widith: 70px;
     padding: 20px 10px;
+}
+
+#emotionInput{
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#emotionInput:focus {
+    width: 100%;
+}
+
+.feeling {
+    margin-right: 15px;
+}
+
+
+element.style {
+}
+@media screen and (min-width: 768px)
+.jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+.jumbotron {
+    background-color: #99b898;
 }

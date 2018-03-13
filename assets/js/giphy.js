@@ -17,6 +17,9 @@
         }).then(function(response) {
             //Clear gifs that are displayed
             $("#gifs-appear-here").empty();
+
+            //Change Subhead Title
+            $("#feeling-title").text("I am feeling " + emotion + "!");
             // Storing an array of results in the results variable
             var results = response.data;
   
