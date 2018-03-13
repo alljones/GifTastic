@@ -19,7 +19,6 @@
             $("#gifs-appear-here").empty();
             // Storing an array of results in the results variable
             var results = response.data;
-            console.log(response.data);
   
             // Looping over every result item
             for (var i = 0; i < results.length; i++) {
@@ -41,6 +40,9 @@
                 // Giving the image tag an src attribute of a property pulled off the
                 // Starting with Still State and adding class of gif
                 gifImage.attr("src", results[i].images.fixed_height_still.url);
+                gifImage.attr("data-state", "still");
+                gifImage.attr("data-still-url", results[i].images.fixed_height_still.url);
+                gifImage.attr("data-animated-url", results[i].images.fixed_height.url);
                 gifImage.addClass("gif");
   
                 // Appending the paragraph and personImage we created to the "gifDiv" div we created
@@ -61,6 +63,7 @@
        // Deleting the buttons prior to adding new emotion
        // (this is necessary otherwise you will have repeat buttons)
        $("#emoButtons").empty();
+       $("#emotionInput").empty();
  
        // Looping through the array of emotion
        for (var i = 0; i < emotionArr.length; i++) {
@@ -76,6 +79,7 @@
          btn.text(emotionArr[i]);
          // Adding the button to the buttons-view div
          $("#emoButtons").append(btn);
+        
        }
      }
  
@@ -88,7 +92,6 @@
  
        // The emotion input from the textbox is then added to our array
        emotionArr.push(emotionInput);
-       console.log(emotionArr);
  
        // Calling renderButtons which handles the processing of our emotion array
        renderButtons();
@@ -104,20 +107,18 @@
         var state = $(this).attr("data-state");
         // get current src
         var src = $(this).attr("src");
+        
         if (state === "still") {
-            // remove '_s.gif'
-            src = src.slice(0, -6);
-            src += ".gif";
-            // change data-state
+            // change data state to animate
             $(this).attr("data-state", "animate");
+            var animatedURL = $(this).attr("data-animated-url");
+            $(this).attr("src", animatedURL);
         } else {
-            // remove '.gif'
-            src = src.slice(0, -4);
-            src += "_s.gif";
+            // change data state to still
             $(this).attr("data-state", "still");
-        }
-        // update src
-        $(this).attr("src", src);
+            var stillURL = $(this).attr("data-still-url");
+            $(this).attr("src", stillURL);
+        };
     });
  
      // Calling the renderButtons function to display the intial buttons
